@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Expense Tracker with Analytics
 
 A web-based expense tracker built with **Java 17**, **Spring Boot**, **MySQL**, **HTML/CSS**, and **JavaScript** (Chart.js). It lets you record expenses, set a monthly budget, and view category and daily spending charts.
@@ -146,3 +147,6 @@ Examples:
 - **Backend:** Spring Boot, Spring Web, Spring Data JPA  
 - **Database:** MySQL  
 - **Frontend:** HTML, CSS, JavaScript, Chart.js (CDN)
+=======
+# Expense-Tracker
+>>>>>>> 477773a710a821872c055dd45b3484e42ae9dfee
