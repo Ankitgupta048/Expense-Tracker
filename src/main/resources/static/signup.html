@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up — Expense Tracker</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/auth.js" defer></script>
+</head>
+<body>
+<div class="app">
+    <header class="header">
+        <div class="header__brand">
+            <span class="header__logo" aria-hidden="true">◆</span>
+            <div>
+                <h1>Expense Tracker</h1>
+                <p class="header__tag">Create an account</p>
+            </div>
+        </div>
+        <div class="period">
+            <a class="btn btn--secondary" href="/login.html">Login</a>
+        </div>
+    </header>
+
+    <div id="alertBanner" class="alert alert--hidden" role="alert"></div>
+
+    <section class="panel" style="max-width: 520px; margin: 0 auto;">
+        <h2 class="panel__title">Sign up</h2>
+        <p class="panel__hint">This creates a user in the MySQL database.</p>
+
+        <form id="signupForm" class="form-stack">
+            <label>
+                Name
+                <input type="text" id="name" autocomplete="name" required maxlength="120">
+            </label>
+            <label>
+                Email
+                <input type="email" id="email" autocomplete="email" required maxlength="190">
+            </label>
+            <label>
+                Password
+                <input type="password" id="password" autocomplete="new-password" required minlength="6" maxlength="72">
+            </label>
+            <button type="submit" class="btn btn--primary">Create account</button>
+            <a class="btn btn--ghost" href="/index.html">Back to app</a>
+        </form>
+    </section>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker — Analytics</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js" defer></script>
+    <script src="/js/app.js" defer></script>
+</head>
+<body>
+    <div class="app">
+        <header class="header">
+            <div class="header__brand">
+                <span class="header__logo" aria-hidden="true">◆</span>
+                <div>
+                    <h1>Expense Tracker</h1>
+                    <p class="header__tag">Track spending · category insights · monthly budget</p>
+                </div>
+            </div>
+            <div class="period">
+                <div class="authbar" id="authBar"></div>
+                <label class="sr-only" for="monthSelect">Month</label>
+                <select id="monthSelect" aria-label="Month"></select>
+                <label class="sr-only" for="yearInput">Year</label>
+                <input type="number" id="yearInput" min="2000" max="2100" aria-label="Year">
+                <button type="button" id="applyPeriod" class="btn btn--primary">Apply</button>
+            </div>
+        </header>
+
+        <div id="alertBanner" class="alert alert--hidden" role="alert"></div>
+
+        <section class="summary" aria-label="Monthly summary">
+            <article class="card">
+                <h2>Total spent</h2>
+                <p class="card__value" id="totalSpent">—</p>
+            </article>
+            <article class="card">
+                <h2>Budget limit</h2>
+                <p class="card__value" id="budgetLimit">—</p>
+            </article>
+            <article class="card">
+                <h2>Remaining</h2>
+                <p class="card__value" id="remaining">—</p>
+            </article>
+            <article class="card card--status">
+                <h2>Status</h2>
+                <p class="badge" id="budgetStatus">—</p>
+            </article>
+        </section>
+
+        <section class="grid-2">
+            <div class="panel">
+                <h2 class="panel__title">Monthly budget</h2>
+                <p class="panel__hint">Set a limit for the selected month. You will be alerted if spending exceeds it.</p>
+                <form id="budgetForm" class="form-inline">
+                    <label>
+                        Limit (₹)
+                        <input type="number" id="budgetAmount" min="0" step="0.01" required placeholder="e.g. 25000">
+                    </label>
+                    <button type="submit" class="btn btn--secondary">Save budget</button>
+                </form>
+            </div>
+            <div class="panel">
+                <h2 class="panel__title">Add expense</h2>
+                <form id="expenseForm" class="form-stack">
+                    <div class="form-row">
+                        <label>
+                            Amount (₹)
+                            <input type="number" id="expAmount" min="0.01" step="0.01" required>
+                        </label>
+                        <label>
+                            Date
+                            <input type="date" id="expDate" required>
+                        </label>
+                    </div>
+                    <label>
+                        Category
+                        <select id="expCategory" required></select>
+                    </label>
+                    <label>
+                        Description
+                        <input type="text" id="expDesc" maxlength="512" placeholder="What was this for?">
+                    </label>
+                    <button type="submit" class="btn btn--primary">Add expense</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="panel__head">
+                <h2 class="panel__title">Expenses</h2>
+                <div class="filters">
+                    <label>
+                        Filter category
+                        <select id="filterCategory">
+                            <option value="">All</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+            <div class="table-wrap">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th class="num">Amount</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="expenseRows"></tbody>
+                </table>
+            </div>
+            <p id="emptyState" class="empty hidden">No expenses for this period.</p>
+        </section>
+
+        <section class="charts" aria-label="Charts">
+            <div class="chart-card">
+                <h3>Spending by category</h3>
+                <canvas id="pieChart" height="220"></canvas>
+            </div>
+            <div class="chart-card">
+                <h3>Daily spending</h3>
+                <canvas id="lineChart" height="220"></canvas>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <span>Expense Tracker with Analytics — Spring Boot · MySQL · Chart.js</span>
+        </footer>
+    </div>
+
+    <div id="editModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="editTitle">
+        <div class="modal__backdrop" data-close></div>
+        <div class="modal__content">
+            <h2 id="editTitle">Edit expense</h2>
+            <form id="editForm" class="form-stack">
+                <input type="hidden" id="editId">
+                <div class="form-row">
+                    <label>
+                        Amount (₹)
+                        <input type="number" id="editAmount" min="0.01" step="0.01" required>
+                    </label>
+                    <label>
+                        Date
+                        <input type="date" id="editDate" required>
+                    </label>
+                </div>
+                <label>
+                    Category
+                    <select id="editCategory" required></select>
+                </label>
+                <label>
+                    Description
+                    <input type="text" id="editDesc" maxlength="512">
+                </label>
+                <div class="modal__actions">
+                    <button type="button" class="btn btn--ghost" data-close>Cancel</button>
+                    <button type="submit" class="btn btn--primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

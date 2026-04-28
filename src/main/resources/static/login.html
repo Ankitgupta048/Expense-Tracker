@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — Expense Tracker</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/auth.js" defer></script>
+</head>
+<body>
+<div class="app">
+    <header class="header">
+        <div class="header__brand">
+            <span class="header__logo" aria-hidden="true">◆</span>
+            <div>
+                <h1>Expense Tracker</h1>
+                <p class="header__tag">Login to continue</p>
+            </div>
+        </div>
+        <div class="period">
+            <a class="btn btn--secondary" href="/signup.html">Create account</a>
+        </div>
+    </header>
+
+    <div id="alertBanner" class="alert alert--hidden" role="alert"></div>
+
+    <section class="panel" style="max-width: 520px; margin: 0 auto;">
+        <h2 class="panel__title">Login</h2>
+        <p class="panel__hint">Use the email and password you signed up with.</p>
+
+        <form id="loginForm" class="form-stack">
+            <label>
+                Email
+                <input type="email" id="email" autocomplete="email" required>
+            </label>
+            <label>
+                Password
+                <input type="password" id="password" autocomplete="current-password" required>
+            </label>
+            <button type="submit" class="btn btn--primary">Login</button>
+            <a class="btn btn--ghost" href="/index.html">Back to app</a>
+        </form>
+    </section>
+</div>
+</body>
+</html>
+
